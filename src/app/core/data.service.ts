@@ -45,6 +45,24 @@ export class DataService {
       )
   }
 
+  updateTask(task: Task): Observable<Task> {
+    let endpoint = `${this.apiUrl}/task/${task.id}`;
+    console.log(`PUT ${endpoint}`)
+    return this.http.put<Task>(endpoint, task, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Task>(null))
+      )
+  }
+
+  deleteTask(task: Task): Observable<Task> {
+    let endpoint = `${this.apiUrl}/task/${task.id}`;
+    console.log(`DELETE ${endpoint}`);
+    return this.http.delete<Task>(endpoint, this.httpOptions)
+      .pipe (
+        catchError(this.handleError<Task>(null))
+      );
+  }
+
   private handleError<T>(passThroughValue?: T) {
     return (error): Observable<T> => {
       console.error(error);

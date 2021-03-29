@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { DataService } from 'src/app/core/data.service';
-
 import { Task } from '../task.interface';
 
 @Component({
-  selector: 'app-task-details',
-  templateUrl: './task-details.component.html',
-  styleUrls: ['./task-details.component.css']
+  selector: 'app-task-edit',
+  templateUrl: './task-edit.component.html',
+  styleUrls: ['./task-edit.component.css']
 })
-export class TaskDetailsComponent implements OnInit {
+export class TaskEditComponent implements OnInit {
 
-  task: Task
+  task: Task;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -25,14 +24,16 @@ export class TaskDetailsComponent implements OnInit {
     })
   }
 
-  editTask(): void {
-    this.router.navigate(['task', this.task.id, 'edit'],
-      {state: {task: this.task}});
-  }
-
-  deleteTask(): void {
-    this.dataService.deleteTask(this.task).subscribe(
-      _ => this.router.navigate(['tasks'])
+  updateTask(task: Task): void {
+    task.id = this.task.id;
+    this.dataService.updateTask(task).subscribe(
+      task => {
+        console.log('Successfully updated task: ', task);
+        this.router.navigate(this.route.snapshot.url.slice(0,-1).map(seg => seg.path));
+      },
+      error => {
+        console.error(error);
+      }
     );
   }
 
