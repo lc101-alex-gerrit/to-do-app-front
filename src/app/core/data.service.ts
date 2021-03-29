@@ -18,6 +18,15 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  getTasks(): Observable<Task[]> {
+    let endpoint = `${this.apiUrl}/tasks`;
+    console.log(`GET ${endpoint}`);
+    return this.http.get<Task[]>(endpoint)
+      .pipe(
+        catchError(this.handleError<Task[]>([]))
+      );
+  }
+
   getTask(id: number): Observable<Task> {
     let endpoint = `${this.apiUrl}/task/${id}`;
     console.log(`GET ${endpoint}`);

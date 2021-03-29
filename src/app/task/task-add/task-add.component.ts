@@ -23,7 +23,7 @@ export class TaskAddComponent implements OnInit {
     this.dataService.addTask(task).subscribe(
       task => {
         console.log('Successfully added task:', task);
-        this.router.navigate([`/task/${task.id}`])
+        this.router.navigate([`/tasks`])
       }
     )
   }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from "./core/core.module";
 import { TaskModule } from "./task/task.module";
+import { TaskListModule } from "./task-list/task-list.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TaskModule } from "./task/task.module";
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    TaskModule
+    TaskModule,
+    TaskListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

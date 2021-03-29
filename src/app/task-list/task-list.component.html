@@ -1,0 +1,11 @@
+<div *ngIf="!tasks.length" class="d-flex justify-content-center">
+  <h5 class="mt-3">No tasks to do!</h5>
+</div>
+
+<div *ngIf="tasks.length" class="d-flex flex-column pt-3">
+  <app-list-item *ngFor="let task of tasks" 
+                  [task]="task"
+                  (click)="onClick(task)"
+                  class="m-1 p-1 border rounded-lg">
+  </app-list-item>
+</div>
