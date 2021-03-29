@@ -1,0 +1,8 @@
+<div *ngIf="!task" class="d-flex justify-content-center pt-3">
+  <h5 class="mt-5">Task not found!</h5>
+</div>
+
+<div *ngIf="task" class="pt-3">
+  <h2 class="display-1">{{ task.title }}</h2>
+  <p>{{ task.description }}</p>
+</div>
